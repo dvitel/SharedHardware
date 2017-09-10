@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;netstandard2.0</TargetFrameworks>
+    <AssemblyName>DBContext</AssemblyName>
+    <PackageId>DBContext</PackageId>
+    <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <RootNamespace>SharedHardware.Data</RootNamespace>
+  </PropertyGroup>
+
+  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
+    <OutputPath>..\..\bin\DBContext\bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\bin\DBContext\obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>..\..\bin\DBContext\obj\Debug\</IntermediateOutputPath>    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <OutputPath>..\..\bin\DBContext\bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\bin\DBContext\obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>..\..\bin\DBContext\obj\Debug\</IntermediateOutputPath>
+  </PropertyGroup>-->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
