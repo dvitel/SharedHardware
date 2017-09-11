@@ -7,8 +7,13 @@ namespace ResourceController
 {
     public class Program
     {
+        public static void CreateNewUser(string login, string password)
+        {
+            GetPrincipalContext
+        }
         public static void Main(string[] args)
         {
+
         }
     }
 }

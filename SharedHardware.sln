@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceController", "Resou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBContext", "DBContext\DBContext.csproj", "{88F89252-7F0D-4692-9B18-7D101A90B378}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "JobWrapper", "JobWrapper\JobWrapper.fsproj", "{6C6626D5-6DF7-4937-B8E6-4497FD31824B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,14 +29,13 @@ Global
 		{88F89252-7F0D-4692-9B18-7D101A90B378}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F89252-7F0D-4692-9B18-7D101A90B378}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F89252-7F0D-4692-9B18-7D101A90B378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6626D5-6DF7-4937-B8E6-4497FD31824B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6626D5-6DF7-4937-B8E6-4497FD31824B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6626D5-6DF7-4937-B8E6-4497FD31824B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6626D5-6DF7-4937-B8E6-4497FD31824B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{62E4BE30-7781-45C7-B40D-B5139ED3366E} = {83FC2D66-D03A-4758-AD15-ADB17C12AF6C}
-		{17888F32-0FFB-40B2-B576-D9A98AA39ED5} = {83FC2D66-D03A-4758-AD15-ADB17C12AF6C}
-		{88F89252-7F0D-4692-9B18-7D101A90B378} = {83FC2D66-D03A-4758-AD15-ADB17C12AF6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F90CEDA8-3368-4F49-BFFE-B0350C486D4A}
