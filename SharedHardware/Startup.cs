@@ -19,27 +19,11 @@ namespace SharedHardware
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        private IConfiguration config { get; }
+        public Startup(IConfiguration config)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                //builder.AddUserSecrets();
-
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                //builder.AddApplicationInsightsSettings(developerMode: true);
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            this.config = config;
         }
-
-        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -48,22 +32,22 @@ namespace SharedHardware
             //services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<SharedHardware.Data.Context>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole<Guid>>()
+            services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<SharedHardware.Data.Context>()
                 .AddDefaultTokenProviders(); //TODO
 
             services.AddMvc();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie(conf => {
-                        conf.LoginPath = new PathString("/login");
-                    });
+                .AddCookie(conf => {
+                    conf.LoginPath = new PathString("/login");
+                });
 
             services.AddAuthorization(c =>
             {
-                c.AddPolicy("Admin", p => p.RequireUserName("dvitel"));
+                c.AddPolicy("Admin", p => p.RequireRole("Admin"));
             });
 
 
@@ -73,11 +57,8 @@ namespace SharedHardware
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -92,8 +73,6 @@ namespace SharedHardware
             app.UseStaticFiles();
 
             app.UseAuthentication();                
-
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes =>
             {

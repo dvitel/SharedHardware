@@ -7,10 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using SharedHardware.Models;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 
 namespace SharedHardware.Data
 {
-    public class Context : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+    public class Context : IdentityDbContext<User, Role, Guid>
     {
         public DbSet<Computation> Computations { get; set; }
         public DbSet<ComputationDeployment> ComputationDeployments { get; set; }
@@ -32,12 +33,7 @@ namespace SharedHardware.Data
         public DbSet<SystemDeployment> SystemDeployments { get; set; }
         public Context(DbContextOptions<DbContext> options)
             : base(options) {}
-        public Context() {}
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data Source=\\\\.\\pipe\\sql\\query;Initial Catalog=SharedHardware;Persist Security Info=True;User ID=SharedHardware;Password=sh_2#s/X49;Connection Timeout=30;Trusted_Connection=True;MultipleActiveResultSets=true");
-        }
+        public Context(DbContextOptions<Context> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -48,7 +44,7 @@ namespace SharedHardware.Data
 
 
             builder.Entity<User>().ToTable("User");
-            builder.Entity<IdentityRole<Guid>>().ToTable("Role");
+            builder.Entity<Role>().ToTable("Role");
             builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaim");
             builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
             builder.Entity<IdentityUserToken<Guid>>().ToTable("UserToken");
