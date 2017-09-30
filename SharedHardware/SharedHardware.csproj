@@ -12,6 +12,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Service References\**" />
+    <Content Remove="Service References\**" />
+    <EmbeddedResource Remove="Service References\**" />
+    <None Remove="Service References\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="appsettings.Development.json.template" />
   </ItemGroup>
 
@@ -39,10 +46,6 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Service References\" />
   </ItemGroup>
 
 </Project>

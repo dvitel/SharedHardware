@@ -1,6 +1,7 @@
 ﻿module Job
 
 #nowarn "9" //unverifiable IL Code in structs
+#nowarn "51"
 open System
 open System.Runtime.InteropServices
 open System.Diagnostics
