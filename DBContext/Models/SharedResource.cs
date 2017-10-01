@@ -5,11 +5,12 @@ namespace SharedHardware.Models
     public class SharedResource
     {
         public enum Per { Minute, Hour, Day } //TODO: extend
-        //TODO: automatically check availability of existing interpretators
-        //OS - file system and process launch
-        //IIS, Apache - site hosting 
-        public Guid Id { get; set; }
+                                              //TODO: automatically check availability of existing interpretators
+                                              //OS - file system and process launch
+                                              //IIS, Apache - site hosting 
+
         public Guid PlatformId { get; set; }
+        public byte ResourceId { get; set; }        
         public Platform Platform { get; set; }
         public DateTime CreationDate { get; set; }        
         public DateTime UpdateDate { get; set; }

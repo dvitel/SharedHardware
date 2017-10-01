@@ -9,8 +9,6 @@ namespace SharedHardware.Models
         public string BundleUrl { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public Guid? LastDeploymentId { get; set; }
-        public ComputationDeployment LastDeployment { get; set;  }
         public Guid ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
         public Guid PlatformTagId { get; set; }

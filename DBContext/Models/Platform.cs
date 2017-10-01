@@ -18,8 +18,8 @@ namespace SharedHardware.Models
         public string PublicIP { get; set; }
         public double ExpectedSLA { get; set; }
         public double CalculatedSLA { get; set; }        
-        public long? LastOutageId { get; set; }
-        public PlatformOutage LastOutage { get; set; }
+        public long? LastUptimeId { get; set; }
+        public PlatformUptimeSpan LastUptime { get; set; }
         public bool IsUp { get; set; }
         public int RunCount { get; set; }
         public int DownCount { get; set; }

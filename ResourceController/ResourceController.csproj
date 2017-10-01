@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>ResourceController</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ResourceController</PackageId>
@@ -11,5 +11,20 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JobWrapper\JobWrapper.fsproj" />
+    <ProjectReference Include="..\NetworkTypes\NetworkTypes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
 
 </Project>

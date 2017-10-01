@@ -5,3 +5,5 @@ bin/
 /DBContext/appsettings.Development.json
 /SharedHardware/appsettings.Development.json
 /SharedHardware/wwwroot/lib/
+/docs/~$$initialDbDesign.~vsdx
+/SharedHardware/SharedHardware.csproj.user

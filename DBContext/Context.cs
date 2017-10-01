@@ -14,7 +14,6 @@ namespace SharedHardware.Data
     public class Context : IdentityDbContext<User, Role, Guid>
     {
         public DbSet<Computation> Computations { get; set; }
-        public DbSet<ComputationDeployment> ComputationDeployments { get; set; }
         public DbSet<ComputationSubscription> ComputationSubscriptions { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Credit> Credits { get; set; }
@@ -22,12 +21,13 @@ namespace SharedHardware.Data
         public DbSet<NotificationLog> NotificationLog { get; set; }
         public DbSet<Platform> Platform { get; set; }
         public DbSet<PlatformEventLog> PlatformEventLog { get; set; }
-        public DbSet<PlatformOutage> PlatformOutages { get; set; }
+        public DbSet<PlatformUptimeSpan> PlatformUptimeSpans { get; set; }
         public DbSet<PlatformRequest> PlatformRequests { get; set; }
         public DbSet<PlatformSubscription> PlatformSubscriptions { get; set; }
         public DbSet<PlatformTag> PlatformTags { get; set; }
         public DbSet<PlatformType> PlatformTypes { get; set; }
         public DbSet<Run> Runs { get; set; }
+        public DbSet<RunHistory> RunHistory { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<SharedResource> SharedResources { get; set; }
         public DbSet<SystemDeployment> SystemDeployments { get; set; }
@@ -77,12 +77,6 @@ namespace SharedHardware.Data
                 .Property(c => c.EntryPoint)
                 .IsRequired()
                 .HasMaxLength(512);
-            builder.Entity<Computation>()
-                .HasOne(c => c.LastDeployment)
-                .WithOne()
-                .IsRequired(false)
-                .HasForeignKey<Computation>(c => c.LastDeploymentId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.Entity<Contact>()
                 .Property(c => c.Name)
@@ -144,9 +138,9 @@ namespace SharedHardware.Data
             builder.Entity<Platform>()
                 .Property(c => c.PublicIP).HasColumnType("varchar(39)");
             builder.Entity<Platform>()
-                .HasOne(c => c.LastOutage)
+                .HasOne(c => c.LastUptime)
                 .WithOne()
-                .HasForeignKey<Platform>(c => new { c.Id, c.LastOutageId })
+                .HasForeignKey<Platform>(c => new { c.Id, c.LastUptimeId })
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
@@ -181,8 +175,8 @@ namespace SharedHardware.Data
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            builder.Entity<PlatformOutage>()
-                .HasKey(c => new { c.PlatformId, c.OutageId });
+            builder.Entity<PlatformUptimeSpan>()
+                .HasKey(c => new { c.PlatformId, c.SpanId });
 
             builder.Entity<PlatformSubscription>()
                 .HasKey(c => new { c.PlatformId, c.ContactId, c.Type });
